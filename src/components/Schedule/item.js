@@ -1,5 +1,6 @@
-import React from "react";
+import React,{ useState } from "react";
 import styled from "styled-components";
+import Reservation from "./reservation";
 
 const ItemContrainer = styled.div`
   width: 80%;
@@ -68,7 +69,7 @@ const Rate = styled.h3`
   color: #69c8ff;
 `;
 
-const Reservation = styled.div`
+const ReservationContainer = styled.div`
   width: 90%;
   position: absolute;
   bottom: -20px;
@@ -93,13 +94,35 @@ const ReservationButton = styled.button`
   cursor: pointer;
 `;
 
-function handleTicket(){
-    console.log("asd");
-}
+const Exit = styled.button`
+    width: 50px;
+  border-radius: 50px;
+  background-color: #0c283b;
+  padding: 15px 15px 15px 15px;
+  font-size: 20px;
+  color: white;
+  font-size: 700;
+  outline: none;
+  border: none;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  cursor: pointer;
+`;
 
 function Item(props) {
+
+  const [reserv,setReserv] = useState('no');
+
+
   return (
+    <>
+    {reserv === 'yes' ? <Reservation>asd</Reservation> :  null}
+      {reserv === 'yes' ? <Exit onClick={e => setReserv('no')} >X</Exit> :  null}
     <ItemContrainer>
+      
+      
       <LeftContainer>
         <Image alt="asd" src={props.schedule.movie.Poster} />
       </LeftContainer>
@@ -135,11 +158,12 @@ function Item(props) {
             ? props.schedule.movie.Ratings[0].Value
             : "NA"}
         </Rate>
-        <Reservation>
-          <ReservationButton onClick={(e) => handleTicket(e)} >Zarezerwuj bilet</ReservationButton>
-        </Reservation>
+        <ReservationContainer>
+           <ReservationButton onClick={e => setReserv('yes')} >Zarezerwuj bilet</ReservationButton> 
+        </ReservationContainer>
       </RightContainer>
     </ItemContrainer>
+    </>
   );
 }
 

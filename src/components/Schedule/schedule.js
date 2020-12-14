@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Item from "./item";
 
+
 const ScheduleCointener = styled.div`
   position: relative;
   top: 100px;
@@ -25,9 +26,11 @@ class Schedule extends React.Component {
   render() {
     return (
       <ScheduleCointener>
+        
         {this.state.isReady === "no"
           ? null
           : this.state.data.map((schedules) => <Item schedule={schedules} />)}
+          
       </ScheduleCointener>
     );
   }

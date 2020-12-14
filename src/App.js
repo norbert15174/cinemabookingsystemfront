@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import Menu from "./components/Menu/menu";
+import { Route, BrowserRouter } from "react-router-dom";
+import Schedule from "./components/Schedule/schedule";
+const MainWrapper = styled.div`
+  background-color: #292829;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
+  padding-top: 0.1px;
+  min-width: 600px;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainWrapper>
+      <BrowserRouter>
+        <Menu />
+        <Route path="/schedule">
+          <Schedule/>
+        </Route>
+      </BrowserRouter>
+    </MainWrapper>
   );
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const ReservationWrapper = styled.div`
@@ -44,7 +44,7 @@ const FormInput = styled.input`
 const FormLabel = styled.label`
   position: absolute;
   font-size: 20px;
-  color: #139ED0;
+  color: #139ed0;
 `;
 
 const FormInpurContrainer = styled.div`
@@ -56,45 +56,165 @@ const FormInpurContrainer = styled.div`
 `;
 
 const ReservationSubmit = styled.div`
-    padding: 10px 10px 10px 10px;
-    color: white;
-    text-align: center;
-    width: 200px;
-    left: calc(50vw - 200px);
-    border: none;
-    background-color: #139ED0;
-    border-radius: 5px;
-    margin-top: 50px;
-    margin-left: calc(32.5% - 100px);
-    cursor: pointer;
+  padding: 10px 10px 10px 10px;
+  color: white;
+  text-align: center;
+  width: 200px;
+  left: calc(50vw - 200px);
+  border: none;
+  background-color: #139ed0;
+  border-radius: 5px;
+  margin-top: 50px;
+  margin-left: calc(32.5% - 100px);
+  cursor: pointer;
 `;
 
 const FormHeader = styled.h1`
-    margin-left: 10%;
-    color: white;
+  margin-left: 10%;
+  color: white;
+`;
 
+const RoomWrapper = styled.div`
+  width: 90%;
+  left: 5%;
+  top: 10%;
+  height: 40%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10% 20% 10% 10% 10% 10%;
+  top: 30%;
+`;
+
+const PlaceWraper = styled.div`
+  width: 40px;
+  height: 30px;
+  background-color: ${(props) =>
+    props.placeSelected === "yes" ? "red" : "green"};
+  cursor: pointer;
+  border-radius: 2px;
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 700;
+`;
+
+const Screen = styled.div`
+  width: 80%;
+  height: 40px;
+  font-size: 25px;
+  text-align: center;
+  background-color: black;
+  position: relative;
+  left: 10%;
+  top: 20%;
+  color: white;
+  padding: 10px 10px 10px 10px;
 `;
 
 function Reservation(props) {
+  const [placeSelect, setPlaceSelect] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  var check = 0;
+  const place = [];
+  const spectSeat = [];
+  var filmShowId;
+  
+
+  function checkValue() {
+    check = check === 0 ? 1 : 0;
+  }
+  function setSeatAmount(e){
+    for (let i = 1; i <= e.room.numberOfSeats; i++) place.push(i);
+    filmShowId = e.id;
+  }
+
+  async function reserv(){
+    const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if(!re.test(email)){
+    alert("Zły email");
+    return 1;
+    }
+    if(name.length===0){
+      alert("Wprowadz imie");
+      return 1;
+    };
+    if(surname.length===0){
+      alert("Wprowadz nazwisko");
+      return 1;
+    }
+    placeSelect === "" ? alert('Wybierz miejsce') : handleItemUpdate();
+    
+  }
+
+  async function handleItemUpdate() {
+    await fetch("http://localhost:8010/filmshow/seatreservation/" + filmShowId, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        surname: surname,
+        name: name,
+        seat: placeSelect, 
+      },)
+
+      
+    });
+    window.location.reload();
+  }
+
+
   return (
     <ReservationWrapper>
+      {props.data.schedule.spectators.map((s) => spectSeat.push(s.seat))}
+      {setSeatAmount(props.data.schedule)}
       <Wrapper>
         <ReservationForm>
           <FormHeader>Dane osobowe</FormHeader>
           <FormInpurContrainer>
             <FormLabel for="name">Imie</FormLabel>
-            <FormInput id="name"></FormInput>
+            <FormInput id="name" onChange={e => setName(e.target.value)}></FormInput>
           </FormInpurContrainer>
           <FormInpurContrainer>
-            <FormLabel for="surname">Nazwisko</FormLabel>
-            <FormInput id="surname"></FormInput>
+            <FormLabel for="surname" >Nazwisko</FormLabel>
+            <FormInput id="surname" onChange={e => setSurname(e.target.value)}></FormInput>
           </FormInpurContrainer>
           <FormInpurContrainer>
             <FormLabel for="email">E-Mail</FormLabel>
-            <FormInput id="email"></FormInput>
+            <FormInput id="email"  onChange={e => setEmail(e.target.value)}></FormInput>
           </FormInpurContrainer>
-          <ReservationSubmit>Zarezerwuj</ReservationSubmit>
+          <ReservationSubmit onClick={e => reserv()}>Zarezerwuj</ReservationSubmit>
         </ReservationForm>
+        <div>
+          <Screen>Screen</Screen>
+          <RoomWrapper>
+            {place.map((p) => (
+              <>
+                {spectSeat.map((s) =>
+                  s === p ? (
+                    <PlaceWraper key={p} placeSelected={"yes"}>
+                      {p}
+                      {checkValue()}
+                    </PlaceWraper>
+                  ) : null
+                )}
+                {check === 0 ? (
+                  <PlaceWraper
+                    onClick={(e) => setPlaceSelect(p)}
+                    id={p}
+                    placeSelected={p === placeSelect ? "yes" : "no"}
+                  >
+                    {p}
+                  </PlaceWraper>
+                ) : (
+                  checkValue()
+                )}
+              </>
+            ))}
+          </RoomWrapper>
+        </div>
       </Wrapper>
     </ReservationWrapper>
   );

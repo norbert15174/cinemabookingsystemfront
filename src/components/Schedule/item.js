@@ -118,7 +118,7 @@ function Item(props) {
 
   return (
     <>
-    {reserv === 'yes' ? <Reservation>asd</Reservation> :  null}
+    {reserv === 'yes' ? <Reservation data={props}></Reservation> :  null}
       {reserv === 'yes' ? <Exit onClick={e => setReserv('no')} >X</Exit> :  null}
     <ItemContrainer>
       

@@ -9,7 +9,6 @@ const MainWrapper = styled.div`
   min-width: 100vw;
   position: relative;
   padding-top: 0.1px;
-  min-width: 600px;
 `;
 
 function App() {

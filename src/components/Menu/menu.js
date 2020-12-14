@@ -28,7 +28,6 @@ const RouterItemContainer = styled.div`
 
 const MenuContainer = styled.div`
   width: 98vw;
-  min-width: 500px;
   position: fixed;
   top: 0;
   height: 50px;

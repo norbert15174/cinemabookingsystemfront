@@ -89,7 +89,7 @@ const PlaceWraper = styled.div`
   width: 40px;
   height: 30px;
   background-color: ${(props) =>
-    props.placeSelected === "yes" ? "red" : "green"};
+    props.placeSelected};
   cursor: pointer;
   border-radius: 2px;
   text-align: center;
@@ -115,6 +115,8 @@ function Reservation(props) {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
+  const [key, setKey] = useState("");
+  const [keyEmail, setEmailKey] = useState("");
   var check = 0;
   const place = [];
   const spectSeat = [];
@@ -161,10 +163,22 @@ function Reservation(props) {
       },)
 
       
-    });
-    window.location.reload();
+    }).then(response => {if(response.status===200){
+        alert('Kod został wysłany na Email');
+        setKey('true');
+    }});
+ //   window.location.reload();
   }
 
+  async function setReservation(){
+    await fetch("http://localhost:8010/filmshow/confimation/" + keyEmail, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      }}).then(response => {if(response.status===200){
+        window.location.reload();
+    }})
+  }
 
   return (
     <ReservationWrapper>
@@ -186,6 +200,8 @@ function Reservation(props) {
             <FormInput id="email"  onChange={e => setEmail(e.target.value)}></FormInput>
           </FormInpurContrainer>
           <ReservationSubmit onClick={e => reserv()}>Zarezerwuj</ReservationSubmit>
+          {key === 'true' ? <h1><br/>Kod <br/><FormInput id="key"  onChange={e => setEmailKey(e.target.value)}></FormInput></h1> : null}
+          {key === 'true' ? <ReservationSubmit onClick={e => setReservation()}>Zarezerwuj</ReservationSubmit> : null}
         </ReservationForm>
         <div>
           <Screen>Screen</Screen>
@@ -194,7 +210,7 @@ function Reservation(props) {
               <>
                 {spectSeat.map((s) =>
                   s === p ? (
-                    <PlaceWraper key={p} placeSelected={"yes"}>
+                    <PlaceWraper key={p} placeSelected={"red"}>
                       {p}
                       {checkValue()}
                     </PlaceWraper>
@@ -204,7 +220,7 @@ function Reservation(props) {
                   <PlaceWraper
                     onClick={(e) => setPlaceSelect(p)}
                     id={p}
-                    placeSelected={p === placeSelect ? "yes" : "no"}
+                    placeSelected={p === placeSelect ? "yellow" : "green"}
                   >
                     {p}
                   </PlaceWraper>

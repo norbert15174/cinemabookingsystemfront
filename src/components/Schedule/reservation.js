@@ -13,9 +13,9 @@ const ReservationWrapper = styled.div`
 
 const Wrapper = styled.div`
   width: 90vw;
-  height: 80vh;
+  height: 85vh;
   left: 5vw;
-  top: 10vh;
+  top: 8vh;
   position: relative;
   background-color: #262626;
   z-index: 600;
@@ -88,6 +88,8 @@ const RoomWrapper = styled.div`
 const PlaceWraper = styled.div`
   width: 40px;
   height: 30px;
+  margin-left: 2px;
+  margin-bottom: 5px;
   background-color: ${(props) =>
     props.placeSelected};
   cursor: pointer;
@@ -109,6 +111,41 @@ const Screen = styled.div`
   color: white;
   padding: 10px 10px 10px 10px;
 `;
+const KeyWrapper = styled.div`
+
+    display: grid;
+    position: relative;
+    grid-template-columns: 150px 150px;
+    height: 50px;
+    top: 20px;
+    left: calc(60% - 300px);
+
+`;
+
+const KeyContainer = styled.input`
+  position: relative;
+  top: 50px;
+  border: none;
+  outline: none;
+  padding: 10px 10px 10px 10px;
+  height: 30px;
+  width: 160px;
+`;
+
+const SumbmitK = styled.div`
+    position: relative;
+    background-color: #139ed0;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    height: 30px;
+    top: 50px;
+`;
+
+
+
 
 function Reservation(props) {
   const [placeSelect, setPlaceSelect] = useState("");
@@ -170,15 +207,17 @@ function Reservation(props) {
  //   window.location.reload();
   }
 
-  async function setReservation(){
+  async function setReservation(e){
     await fetch("http://localhost:8010/filmshow/confimation/" + keyEmail, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
       }}).then(response => {if(response.status===200){
+        alert("bilet został wysłany na email");
         window.location.reload();
     }})
   }
+
 
   return (
     <ReservationWrapper>
@@ -200,8 +239,11 @@ function Reservation(props) {
             <FormInput id="email"  onChange={e => setEmail(e.target.value)}></FormInput>
           </FormInpurContrainer>
           <ReservationSubmit onClick={e => reserv()}>Zarezerwuj</ReservationSubmit>
-          {key === 'true' ? <h1><br/>Kod <br/><FormInput id="key"  onChange={e => setEmailKey(e.target.value)}></FormInput></h1> : null}
-          {key === 'true' ? <ReservationSubmit onClick={e => setReservation()}>Zarezerwuj</ReservationSubmit> : null}
+          <KeyWrapper>
+          {key === 'true' ? <KeyContainer type="number" placeholder="Wprowadz kod" id="key" onChange={e => setEmailKey(e.target.value)}></KeyContainer> : null}
+          {key === 'true' ? <SumbmitK onClick={e => setReservation()}>Zatwierdź</SumbmitK> : null}
+          </KeyWrapper>
+          
         </ReservationForm>
         <div>
           <Screen>Screen</Screen>

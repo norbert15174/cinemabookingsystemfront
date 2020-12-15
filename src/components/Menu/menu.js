@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -41,6 +41,9 @@ const MenuContainer = styled.div`
 `;
 
 function Menu() {
+
+
+
   return (
     <MenuContainer>
       <RouterItemContainer>
@@ -60,11 +63,14 @@ function Menu() {
           New Movies
         </RouteItem>
       </RouterItemContainer>
+      
       <RouterItemContainer>
-        <RouteItem to="/login" activeStyle={{ color: "#69c8ff" }}>
-          Login
-        </RouteItem>
-      </RouterItemContainer>
+      <RouteItem to="/login" activeStyle={{ color: "#69c8ff" }}>
+        Login
+      </RouteItem>
+    </RouterItemContainer>
+      
+      
     </MenuContainer>
   );
 }

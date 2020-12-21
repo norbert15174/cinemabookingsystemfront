@@ -17,7 +17,7 @@ class Schedule extends React.Component {
   };
 
   async componentDidMount() {
-    await fetch("http://192.168.0.152:8010/filmshow")
+    await fetch("http://localhost:8010/filmshow")
       .then((response) => response.json())
       .then((data) => this.setState({ data, isReady: "yes" }));
     console.log(this.state.data);

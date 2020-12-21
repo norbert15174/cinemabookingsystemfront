@@ -34,7 +34,7 @@ const MenuContainer = styled.div`
   padding-bottom: 40px;
   padding-left: 1vw;
   padding-right: 1vw;
-  z-index: 100;
+  z-index: 1000;
   background-color: #1c1b1c;
   display: grid;
   grid-template-columns: 15vw 15vw 15vw 20vw;

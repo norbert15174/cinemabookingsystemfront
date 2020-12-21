@@ -10,6 +10,9 @@ const Container = styled.div`
   min-height: 75vh;
   padding-bottom: 50px;
   padding-top: 30px;
+  -webkit-box-shadow: 0px 10px 8px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 10px 8px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 10px 8px 0px rgba(0,0,0,0.75);
 `;
 
 const FormContainer = styled.div`
@@ -140,26 +143,55 @@ class FilmShow extends React.Component {
         isReady: 'no',
         isRoomReady: 'no',
         title: '',
-        titleReady: 'no'
+        titleReady: 'no',
+        room: '',
+        movie: '',
+        date: ''
     }
 
 
     async componentDidMount() {
-        await fetch("http://192.168.0.152:8010/movies")
+        await fetch("http://localhost:8010/movies")
           .then((response) => response.json())
           .then((movies) => this.setState({ movies, isReady: "yes" }));
-          await fetch("http://192.168.0.152:8010/room")
+          await fetch("http://localhost:8010/room")
           .then((response) => response.json())
           .then((rooms) => this.setState({ rooms, isRoomReady: "yes" }));
         }
 
       handleMovie = (e) =>{
         this.setState({
+            movie: e.target.value,
             title: e.target.value,
             titleReady: 'yes'
         })
       }
 
+      handleRoom(e) {
+        this.setState({
+          room: e.target.value
+        })
+      }
+
+      handleDate(e) {
+        console.log(e.target.value);
+        this.setState({
+          date: e.target.value
+        })
+      }
+
+      async handleFilmShow(e){
+        await fetch("http://localhost:8010/filmshow/addfilmshow?title=" + this.state.movie + "&roomId=" + this.state.room, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              dateStart: this.state.date
+          },)
+      }
+        )
+    }
   render() {
     return (
       <Container>
@@ -167,6 +199,7 @@ class FilmShow extends React.Component {
           <Wrapper>
             <DateLabel>Data seansu: </DateLabel>
             <DateInput
+              onChange={e => this.handleDate(e)}
               type="datetime-local"
               id="meeting-time"
               name="meeting-time"
@@ -198,11 +231,12 @@ class FilmShow extends React.Component {
 
           <Wrapper>
             <DateLabel>Sala: </DateLabel>
-            <SelectInput>
+            <SelectInput onChange={e => this.handleRoom(e)}>
+            <option>-</option>
             {this.state.rooms ? this.state.rooms.map(m => <option value={m.id}>{m.id}</option>):null}
             </SelectInput>
           </Wrapper>
-          <AddButton>Dodaj Seans</AddButton>
+          <AddButton onClick={e => this.handleFilmShow(e)}>Dodaj Seans</AddButton>
         </FormContainer>
       </Container>
     );

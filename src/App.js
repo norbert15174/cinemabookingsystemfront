@@ -4,6 +4,7 @@ import Menu from "./components/Menu/menu";
 import { Route, BrowserRouter } from "react-router-dom";
 import Schedule from "./components/Schedule/schedule";
 import FilmShow from "./components/FilmShow/filmshow";
+import Reservation from "./components/Reservation/reservation";
 const MainWrapper = styled.div`
   background-color: #292829;
   min-height: 100vh;
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/filmshow">
           <FilmShow/>
+        </Route>
+        <Route path="/Reservation">
+          <Reservation/>
         </Route>
       </BrowserRouter>
     </MainWrapper>

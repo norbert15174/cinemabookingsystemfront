@@ -81,8 +81,9 @@ function Menu() {
       </RouterItemContainer>
       
       <RouterItemContainer>
-      <RouteItem to="/login" activeStyle={{ color: "white" }}>
-        Login
+      
+      <RouteItem  to={localStorage.getItem('Bearer') !== null ? '/filmshow' : '/login'} activeStyle={{ color: "white" }}>
+      {localStorage.getItem('Bearer') !== null ? 'FilmShow' : 'Login'}
       </RouteItem>
     </RouterItemContainer>
       

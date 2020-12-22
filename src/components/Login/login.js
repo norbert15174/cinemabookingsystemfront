@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {BiLogIn} from "react-icons/bi";
+import { BiLogIn } from "react-icons/bi";
 
 const LoginContainet = styled.div`
   width: 100vw;
@@ -40,24 +40,21 @@ const LoginInput = styled.input`
   border-radius: 30px;
   color: white;
   font-size: 15px;
-  &::placeholder{
-      color: white;
-      font-style: italic;
+  &::placeholder {
+    color: white;
+    font-style: italic;
   }
 `;
 
 const LoginIcon = styled(BiLogIn)`
-
-    position: absolute;
-    font-size: 100px;
-    color: white;
-    left: calc(50% - 150px);
-    top: 15vh;
-
+  position: absolute;
+  font-size: 100px;
+  color: white;
+  left: calc(50% - 150px);
+  top: 15vh;
 `;
 
 const LoginSpan = styled.span`
-
   font-size: 50px;
   color: white;
   position: absolute;
@@ -65,14 +62,14 @@ const LoginSpan = styled.span`
   top: calc(15vh + 10px);
   font-weight: 700;
   font-style: italic;
-
 `;
 
 const SubmitButton = styled.span`
-
   font-size: 20px;
   color: white;
-  position: absolute;
+  position: relative;
+  height: 30px;
+  top: 30vh;
   left: calc(35% - 20px);
   bottom: 25vh;
   font-weight: 700;
@@ -83,32 +80,65 @@ const SubmitButton = styled.span`
   text-align: center;
   width: 30%;
   padding: 20px 20px 20px 20px;
-
 `;
 
+const createHistory = require("history").createBrowserHistory;
+
 class Login extends React.Component {
+  state = {
+    username: "",
+    password: "",
+  };
 
-    state = {
-        username: '',
-        password: ''
-    }
+  handleLogin = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    handleLogin = e =>{
-        this.setState({
-            [e.target.name] : e.target.value
-        })
-    }
+  async handleLoginAction() {
+    await fetch("http://localhost:8010/auth/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      }),
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        data !== "" ? localStorage.setItem("Bearer", data) : console.log(data);
+      })
+      .catch((er) => null);
 
+    createHistory().push("/filmshow");
+    let pathUrl = window.location.href;
+    window.location.href = pathUrl;
+  }
 
   render() {
     return (
       <LoginContainet>
         <LoginForm>
-            <LoginSpan>Login</LoginSpan>
-            <LoginIcon></LoginIcon>
-          <LoginInput type="text" name="username" placeholder="username" onChange={e => this.handleLogin(e)}></LoginInput>
-          <LoginInput type="text" name="password" placeholder="password" onChange={e => this.handleLogin(e)}></LoginInput>
-          <SubmitButton>Sign in</SubmitButton>
+          <LoginSpan>Login</LoginSpan>
+          <LoginIcon></LoginIcon>
+          <LoginInput
+            type="text"
+            name="username"
+            placeholder="username"
+            onChange={(e) => this.handleLogin(e)}
+          ></LoginInput>
+          <LoginInput
+            type="password"
+            name="password"
+            placeholder="password"
+            onChange={(e) => this.handleLogin(e)}
+          ></LoginInput>
+          <SubmitButton onClick={(e) => this.handleLoginAction()}>
+            Sign in
+          </SubmitButton>
         </LoginForm>
       </LoginContainet>
     );

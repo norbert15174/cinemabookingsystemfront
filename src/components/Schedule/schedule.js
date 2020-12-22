@@ -154,7 +154,7 @@ class Schedule extends React.Component {
     })
     setTimeout( e => fetch("http://192.168.0.152:8010/filmshow/findfilmshow?from=" + this.state.from + "&to=" + this.state.to + "&title=" + this.state.movie )
     .then((response) => response.json())
-    .then((data) => data.status === 200 ? this.setState({ data, isReady: "yes" }) : null).catch(er => null),100);
+    .then((data) => data.status === 200 ? null : this.setState({ data, isReady: "yes" })).catch(er => null),100);
     
   }
 

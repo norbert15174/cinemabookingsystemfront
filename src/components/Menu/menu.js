@@ -8,6 +8,9 @@ const RouteItem = styled(NavLink)`
   text-decoration: none;
   min-width: 150px;
   font-weight: 500;
+  @media (max-width: 800px){
+    font-size: 14px;
+  }
 `;
 
 const RouterItemContainer = styled.div`
@@ -26,6 +29,16 @@ background: -moz-radial-gradient(top right, #0CDDEB, #702B61);
 background: radial-gradient(to bottom left, #0CDDEB, #702B61);
     border-radius: 20px;
   }
+  @media (max-width: 800px){
+    &:nth-child(4) {
+    left: 10px;
+    width: 100px;
+    border: none;
+    height: 30px;
+    padding-bottom: 5px;
+  }
+  border: none;
+  }
 `;
 
 const MenuContainer = styled.div`
@@ -40,6 +53,9 @@ const MenuContainer = styled.div`
   background-color: #1c1b1c;
   display: grid;
   grid-template-columns: 15vw 15vw 15vw 20vw;
+  @media (max-width: 800px){
+    grid-template-columns: 22vw 22vw 22vw 25vw;
+  }
 `;
 
 function Menu() {

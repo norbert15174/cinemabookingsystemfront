@@ -56,7 +56,7 @@ const ItemRightParagraph = styled.p`
   font-style: italic;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-    @media (max-width: 1400px){
+    @media (max-width: 1200px){
     font-size: 30px;
   }
 `;
@@ -68,7 +68,7 @@ const ItemRightSpan = styled.span`
   font-size: 20px;
   left: 50%;
   position: relative;
-  @media (max-width: 1400px){
+  @media (max-width: 1200px){
     left: 30%;
     font-size: 20px;
   }

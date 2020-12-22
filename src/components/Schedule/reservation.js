@@ -9,6 +9,16 @@ const ReservationWrapper = styled.div`
   z-index: 1000;
   top: 0;
   left: 0;
+  opacity: 1;
+  animation: mymove 0.5s ease-out;
+  @keyframes mymove {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const Wrapper = styled.div`

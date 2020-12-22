@@ -6,6 +6,7 @@ import Schedule from "./components/Schedule/schedule";
 import FilmShow from "./components/FilmShow/filmshow";
 import Reservation from "./components/Reservation/reservation";
 import Main from "./components/Main/main";
+import Login from "./components/Login/login";
 const MainWrapper = styled.div`
   background-color: #292829;
   min-height: 100vh;
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/Reservation">
           <Reservation/>
+        </Route>
+        <Route path="/Login">
+          <Login/>
         </Route>
       </BrowserRouter>
     </MainWrapper>

@@ -24,9 +24,7 @@ const RouterItemContainer = styled.div`
     width: 200px;
     left: calc(50vw - 200px);
     border: none;
-    background: -webkit-radial-gradient(top right, #0CDDEB, #702B61);
-background: -moz-radial-gradient(top right, #0CDDEB, #702B61);
-background: radial-gradient(to bottom left, #0CDDEB, #702B61);
+    background-color: #b5224e;
     border-radius: 20px;
   }
   @media (max-width: 800px){
@@ -83,7 +81,7 @@ function Menu() {
       </RouterItemContainer>
       
       <RouterItemContainer>
-      <RouteItem to="/login" activeStyle={{ color: "#69c8ff" }}>
+      <RouteItem to="/login" activeStyle={{ color: "white" }}>
         Login
       </RouteItem>
     </RouterItemContainer>

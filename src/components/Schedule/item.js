@@ -32,8 +32,8 @@ const ItemContrainer = styled.div`
   @media screen and (max-width: 1000px){
     grid-template-columns: calc(100% - 40px);
     padding: 0;
-      width: 98vw;
-      left: 1vw;
+      width: 80%;
+      left: 10%;
   }
   -webkit-box-shadow: 0px 10px 8px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 10px 8px 0px rgba(0,0,0,0.75);

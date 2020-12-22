@@ -28,15 +28,19 @@ const SearchContainer = styled.div`
   position: relative;
   left: 10%;
   margin-bottom: 40px;
+  @media (max-width: 1200px){
+    left: calc(10% -  30px);
+  }
 `;
 
 const FromContainer = styled.div`
+  left: 0px;
   width: 100%;
   padding-top: 50px;
   padding-bottom: 50px;
   height: ${(props) => (props.search === "yes" ? "600px" : "0px")};
   padding: ${(props) =>
-    props.search === "yes" ? "30px 30px 30px 30px" : "0px 0px 0px 0px"};
+    props.search === "yes" ? "30px 0px 30px 0px" : "0px 0px 0px 0px"};
   position: relative;
   background-color: #1c1b1c;
   border-radius: 20px;
@@ -44,6 +48,10 @@ const FromContainer = styled.div`
   display: grid;
   grid-template-columns: 100%;
   transition: all 2s;
+  @media (max-width: 1400px){
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 `;
 
 const DateInput = styled.input`
@@ -58,6 +66,10 @@ const DateInput = styled.input`
   margin-top: 20px;
   left: 20%;
   position: relative;
+  @media (max-width: 1400px){
+    left: 10%;
+    width: 250px;
+  }
 `;
 
 const TextInput = styled.input`
@@ -72,6 +84,10 @@ const TextInput = styled.input`
   left: 20%;
   position: relative;
   width: 250px;
+  @media (max-width: 1400px){
+    left: 10%;
+    width: 250px;
+  }
 `;
 
 const DateLabel = styled.div`
@@ -90,6 +106,16 @@ const DateLabel = styled.div`
     width: 400px;
     margin-top: 2px;
     border-bottom: 2px solid #69c8ff;
+  }
+  @media (max-width: 1200px){
+    left: 0;
+    &::after {
+    content: "";
+    display: block;
+    width: 80%;
+    margin-top: 2px;
+    border-bottom: 2px solid #69c8ff;
+  }
   }
 `;
 
@@ -110,7 +136,7 @@ class Schedule extends React.Component {
   };
 
   async componentDidMount() {
-    await fetch("http://localhost:8010/filmshow")
+    await fetch("http://192.168.0.152:8010/filmshow")
       .then((response) => response.json())
       .then((data) => this.setState({ data, isReady: "yes" }));
   }
@@ -126,7 +152,7 @@ class Schedule extends React.Component {
       isReady: "no",
       [e.target.name] : e.target.value
     })
-    setTimeout( e => fetch("http://localhost:8010/filmshow/findfilmshow?from=" + this.state.from + "&to=" + this.state.to + "&title=" + this.state.movie )
+    setTimeout( e => fetch("http://192.168.0.152:8010/filmshow/findfilmshow?from=" + this.state.from + "&to=" + this.state.to + "&title=" + this.state.movie )
     .then((response) => response.json())
     .then((data) => data.status === 200 ? this.setState({ data, isReady: "yes" }) : null).catch(er => null),100);
     

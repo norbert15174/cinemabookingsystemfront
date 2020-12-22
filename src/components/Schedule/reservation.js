@@ -6,7 +6,7 @@ const ReservationWrapper = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
-  z-index: 500;
+  z-index: 1000;
   top: 0;
   left: 0;
 `;
@@ -21,6 +21,12 @@ const Wrapper = styled.div`
   z-index: 600;
   display: grid;
   grid-template-columns: 50% 50%;
+  @media (max-width: 900px){
+    height: 95vh;
+    top: 2vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 40%;
+  }
 `;
 
 const ReservationForm = styled.form`
@@ -30,6 +36,10 @@ const ReservationForm = styled.form`
   top: 5%;
   left: 5%;
   border-right: 2px solid #0c283b;
+  @media (max-width: 900px){
+    top: 2%;
+    height: 40%;
+  }
 `;
 
 const FormInput = styled.input`
@@ -39,12 +49,21 @@ const FormInput = styled.input`
   left: -10px;
   padding: 10px 10px 10px 10px;
   margin-top: 40px;
+  @media (max-width: 900px){
+    padding: 5px 5px 5px 5px;
+    font-size: 10px;
+    margin-top: 5px;
+  }
 `;
 
 const FormLabel = styled.label`
   position: absolute;
   font-size: 20px;
   color: #139ed0;
+  @media (max-width: 900px){
+    font-size: 15px;
+    top: -25px;
+  }
 `;
 
 const FormInpurContrainer = styled.div`
@@ -53,6 +72,10 @@ const FormInpurContrainer = styled.div`
   height: 100px;
   left: 10%;
   top: 5%;
+  @media (max-width: 900px){
+    top: 2%;
+    height: 70px;
+  }
 `;
 
 const ReservationSubmit = styled.div`
@@ -67,6 +90,9 @@ const ReservationSubmit = styled.div`
   margin-top: 50px;
   margin-left: calc(32.5% - 100px);
   cursor: pointer;
+  @media (max-width: 900px){
+    margin-top: 0px;
+  }
 `;
 
 const FormHeader = styled.h1`
@@ -97,6 +123,11 @@ const PlaceWraper = styled.div`
   text-align: center;
   padding-top: 10px;
   font-weight: 700;
+  @media (max-width: 900px){
+    padding-top: 5px;
+    width: 30px;
+    height: 20px;
+  }
 `;
 
 const Screen = styled.div`

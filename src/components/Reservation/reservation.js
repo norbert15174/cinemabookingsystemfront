@@ -16,6 +16,9 @@ const FromContainer = styled.form`
   position: relative;
   height: 100px;
   text-align: center;
+  @media (max-width: 900px){
+    width: 90%;
+  }
 `;
 
 const FormInput = styled.input`
@@ -23,18 +26,23 @@ const FormInput = styled.input`
   background-color: black;
   color: white;
   position: relative;
-  top: 5vh;
+  top: 55px;
   padding: 20px 25px 20px 25px;
   outline: none;
   border: none;
   transition: all 1s;
   border-radius: 50px;
+  @media (max-width: 900px){
+    width: ${(props) => (props.search === "yes" ? "250px" : "0px")};
+    font-size: 14px;
+    left: 50px;
+  }
 `;
 
 const Search = styled(FaSearch)`
   color: red;
   position: relative;
-  top: calc(10vh - 25px);
+  top: calc(80px);
   left: calc(-60px);
   font-size: 30px;
   background: #0cddeb;
@@ -45,6 +53,10 @@ const Search = styled(FaSearch)`
   padding: 20px 20px 20px 20px;
   border-radius: 40px;
   cursor: pointer;
+  @media (max-width: 900px){
+    font-size: 20px;
+    left: 0px;
+  }
 `;
 
 const ReservationItemContainer = styled.div`
@@ -105,7 +117,7 @@ class Reservation extends React.Component {
     });
 
     await fetch(
-      "http://localhost:8010/filmshow/reservation?email=" + this.state.mail
+      "http://192.168.0.152:8010/filmshow/reservation?email=" + this.state.mail
     )
       .then((response) => response.json())
       .then((data) => this.setState({ data, isReady: "yes" }))

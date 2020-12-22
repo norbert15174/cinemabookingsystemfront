@@ -24,18 +24,28 @@ const ItemContainer = styled.div`
       opacity: 1;
     }
   }
+  @media (max-width: 900px){
+    grid-template-columns: 100%;
+    left: -5%;
+  }
 `;
 
 const ItemParagraph = styled.p`
   color: white;
   font-size: 18px;
   font-weight: 700;
+  @media (max-width: 900px){
+    font-size: 14px;
+  }
 `;
 
 const ItemSpan = styled.span`
   color: #702b61;
   font-size: 20px;
   font-weight: 600;
+  @media (max-width: 900px){
+    font-size: 14px;
+  }
 `;
 
 const ItemRightParagraph = styled.p`
@@ -46,15 +56,22 @@ const ItemRightParagraph = styled.p`
   font-style: italic;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+    @media (max-width: 1400px){
+    font-size: 30px;
+  }
 `;
 
 const ItemRightSpan = styled.span`
   color: white;
   font-size: 20px;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 20px;
   left: 50%;
   position: relative;
+  @media (max-width: 1400px){
+    left: 30%;
+    font-size: 20px;
+  }
 `;
 
 const Thanks = styled.div`
@@ -82,12 +99,25 @@ const Thanks = styled.div`
     fill: white;
     content: "";
   }
+
+ 
+  @media (max-width: 950px){
+    display: none;
+    ;
+  }
+`;
+
+const ParagraphDiv = styled.div`
+
+    position:relative;
+    left: 0;
+
 `;
 
 function Item(props) {
   return (
     <ItemContainer>
-      <div>
+      <ParagraphDiv>
         <ItemParagraph>
           <ItemSpan>Imie: </ItemSpan>
           {props.info.name}
@@ -112,7 +142,7 @@ function Item(props) {
           <ItemSpan>Miejsce: </ItemSpan>
           {props.info.seat}
         </ItemParagraph>
-      </div>
+      </ParagraphDiv>
       <Thanks>
         <ItemRightParagraph>Cinema Booking System</ItemRightParagraph>
         <ItemRightSpan>Thank you for your reservation</ItemRightSpan>

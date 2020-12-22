@@ -6,7 +6,7 @@ const ItemContrainer = styled.div`
   width: 80%;
   position: relative;
   left: calc(10% - 80px);
-
+  opacity: 1;
   background-color: #1c1b1c;
   margin-bottom: 50px;
   padding: 20px 20px 20px 20px;
@@ -15,6 +15,20 @@ const ItemContrainer = styled.div`
   top: 50px;
   display: grid;
   grid-template-columns: 30% 70%;
+
+  animation: mymove 1s ease-out;
+  @keyframes mymove {
+    from {
+      opacity: 0;
+      top: 150px;
+    }
+    to {
+      top: 50px;
+      opacity: 1;
+    }
+  }
+
+
   @media screen and (max-width: 1000px){
     grid-template-columns: calc(100% - 40px);
     padding: 0;

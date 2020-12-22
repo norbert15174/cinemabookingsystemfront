@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -21,7 +21,9 @@ const RouterItemContainer = styled.div`
     width: 200px;
     left: calc(50vw - 200px);
     border: none;
-    background-color: #0c283b;
+    background: -webkit-radial-gradient(top right, #0CDDEB, #702B61);
+background: -moz-radial-gradient(top right, #0CDDEB, #702B61);
+background: radial-gradient(to bottom left, #0CDDEB, #702B61);
     border-radius: 20px;
   }
 `;

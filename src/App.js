@@ -8,7 +8,7 @@ import Reservation from "./components/Reservation/reservation";
 const MainWrapper = styled.div`
   background-color: #292829;
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
   position: relative;
   padding-top: 0.1px;
 `;

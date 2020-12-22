@@ -27,6 +27,9 @@ class Schedule extends React.Component {
     return (
       <ScheduleCointener>
         
+
+
+        
         {this.state.isReady === "no"
           ? null
           : this.state.data.map((schedules) => <Item schedule={schedules} />)}

@@ -29,7 +29,7 @@ background: radial-gradient(to bottom left, #0CDDEB, #702B61);
 `;
 
 const MenuContainer = styled.div`
-  width: 98vw;
+  width: 100%;
   position: fixed;
   top: 0;
   height: 50px;

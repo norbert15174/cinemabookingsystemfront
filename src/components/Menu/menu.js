@@ -19,7 +19,7 @@ const RouterItemContainer = styled.div`
   position: relative;
   top: 50%;
   padding-top: 10px;
-  border-right: 1px #69c8ff dotted;
+  border-right: 1px #b5224e dotted;
   &:nth-child(4) {
     width: 200px;
     left: calc(50vw - 200px);
@@ -63,19 +63,19 @@ function Menu() {
   return (
     <MenuContainer>
       <RouterItemContainer>
-        <RouteItem to="/schedule" activeStyle={{ color: "#69c8ff" }}>
+        <RouteItem to="/schedule" activeStyle={{ color: "#b5224e" }}>
           Schedule
         </RouteItem>
       </RouterItemContainer>
 
       <RouterItemContainer>
-        <RouteItem to="/reservation" activeStyle={{ color: "#69c8ff" }}>
+        <RouteItem to="/reservation" activeStyle={{ color: "#b5224e" }}>
           Reservation
         </RouteItem>
       </RouterItemContainer>
 
       <RouterItemContainer>
-        <RouteItem to="/movies" activeStyle={{ color: "#69c8ff" }}>
+        <RouteItem to="/movies" activeStyle={{ color: "#b5224e" }}>
           New Movies
         </RouteItem>
       </RouterItemContainer>

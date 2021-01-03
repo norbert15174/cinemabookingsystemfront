@@ -25,6 +25,9 @@ const LoginForm = styled.form`
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 100px 100px;
+  @media only screen and (max-width: 800px){
+    grid-template-rows: 60px 60px;
+  }
 `;
 
 const LoginInput = styled.input`
@@ -40,6 +43,11 @@ const LoginInput = styled.input`
   border-radius: 30px;
   color: white;
   font-size: 15px;
+  @media only screen and (max-width: 800px){
+    left: calc(10%);
+    width: 70%;
+    padding: 10px 10px 10px 10px;
+  }
   &::placeholder {
     color: white;
     font-style: italic;
@@ -52,6 +60,10 @@ const LoginIcon = styled(BiLogIn)`
   color: white;
   left: calc(50% - 150px);
   top: 15vh;
+  @media only screen and (max-width: 800px){
+    left: calc(50% - 70px);
+    font-size: 60px;
+  }
 `;
 
 const LoginSpan = styled.span`
@@ -62,6 +74,11 @@ const LoginSpan = styled.span`
   top: calc(15vh + 10px);
   font-weight: 700;
   font-style: italic;
+  @media only screen and (max-width: 800px){
+    font-size: 30px;
+    left: calc(60% - 30px);
+  }
+  
 `;
 
 const SubmitButton = styled.span`
@@ -80,6 +97,11 @@ const SubmitButton = styled.span`
   text-align: center;
   width: 30%;
   padding: 20px 20px 20px 20px;
+  @media only screen and (max-width: 800px){
+    left: calc(10%);
+    padding: 10px 10px 10px 10px;
+    width: 70%;
+  }
 `;
 
 const createHistory = require("history").createBrowserHistory;

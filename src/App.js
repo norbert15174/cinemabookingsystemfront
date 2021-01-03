@@ -7,6 +7,7 @@ import FilmShow from "./components/FilmShow/filmshow";
 import Reservation from "./components/Reservation/reservation";
 import Main from "./components/Main/main";
 import Login from "./components/Login/login";
+import Movie from "./components/Movies/movie";
 const MainWrapper = styled.div`
   background-color: #292829;
   min-height: 100vh;
@@ -35,6 +36,10 @@ function App() {
         <Route path="/Login">
           <Login/>
         </Route>
+        <Route path="/movies">
+          <Movie/>
+        </Route>
+        
       </BrowserRouter>
     </MainWrapper>
   );

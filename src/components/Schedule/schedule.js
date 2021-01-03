@@ -58,9 +58,9 @@ const FromContainer = styled.div`
 const DateInput = styled.input`
   width: 250px;
   height: 30px;
-  color: #69c8ff;
+  color: #b5224e;
   background-color: #2e2e2e;
-  border: 4px solid #69c8ff;
+  border: 4px solid #b5224e;
   border-radius: 5px;
   font-size: 18px;
   padding: 5px 5px 5px 5px;
@@ -75,9 +75,9 @@ const DateInput = styled.input`
 
 const TextInput = styled.input`
   height: 30px;
-  color: #69c8ff;
+  color: #b5224e;
   background-color: #2e2e2e;
-  border: 4px solid #69c8ff;
+  border: 4px solid #b5224e;
   border-radius: 5px;
   font-size: 18px;
   padding: 5px 5px 5px 5px;
@@ -106,7 +106,7 @@ const DateLabel = styled.div`
     display: block;
     width: 400px;
     margin-top: 2px;
-    border-bottom: 2px solid #69c8ff;
+    border-bottom: 2px solid #b5224e;
   }
   @media (max-width: 1200px){
     left: 0;

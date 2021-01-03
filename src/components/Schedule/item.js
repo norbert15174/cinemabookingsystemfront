@@ -43,7 +43,7 @@ box-shadow: 0px 10px 8px 0px rgba(0,0,0,0.75);
 const LeftContainer = styled.div`
   width: 100%;
   height: 100%;
-  border-right: 2px solid #0c283b;
+  border-right: 2px solid #b5224e;
   @media screen and (max-width: 1000px){
     border: none;
   }
@@ -69,21 +69,21 @@ const Image = styled.img`
 `;
 
 const Title = styled.h1`
-  color: #69c8ff;
+  color: #b5224e;
 `;
 const TitleProps = styled.span`
   color: white;
 `;
 
 const Titleh3 = styled.h3`
-  color: #69c8ff;
+  color: #b5224e;
 `;
 
 const Rate = styled.h3`
   position: absolute;
   top: 10px;
   right: 50px;
-  color: #69c8ff;
+  color: #b5224e;
 `;
 
 const ReservationContainer = styled.div`
@@ -100,7 +100,7 @@ const ReservationContainer = styled.div`
 const ReservationButton = styled.button`
   width: 250px;
   border-radius: 50px;
-  background-color: #0c283b;
+  background-color: #b5224e;
   padding: 15px 15px 15px 15px;
   font-size: 20px;
   color: white;
@@ -114,7 +114,7 @@ const ReservationButton = styled.button`
 const Exit = styled.button`
     width: 50px;
   border-radius: 50px;
-  background-color: #0c283b;
+  background-color: #b5224e;
   padding: 15px 15px 15px 15px;
   font-size: 20px;
   color: white;

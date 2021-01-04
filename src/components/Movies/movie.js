@@ -4,6 +4,7 @@ import { MdMovie } from "react-icons/md";
 import { AiFillRightSquare } from "react-icons/ai";
 import { BiCameraMovie } from "react-icons/bi";
 import MovieItem from "./moveitem";
+import RoomItem from "./roomitem";
 
 const MovieContainer = styled.div`
   width: 80%;
@@ -219,6 +220,12 @@ function Movie() {
     }
   }
 
+  const createHistory = require("history").createBrowserHistory;
+  if (localStorage.getItem("Bearer") === null) {
+    createHistory().push("/login");
+    let pathUrl = window.location.href;
+    window.location.href = pathUrl;
+  } else {
   return (
     <MovieContainer show={show}>
       <MovieMenu show={pressed}>
@@ -233,14 +240,21 @@ function Movie() {
         <FuncName>
           <MovieIcon onClick={(e) => setShow("movie")} />
         </FuncName>
-        <FuncName>New Room</FuncName>
-        <FuncName>
+        <FuncName onClick={(e) => setShow("room")}>New Room</FuncName>
+        <FuncName onClick={(e) => setShow("room")}>
           <RoomIcon />
         </FuncName>
       </MovieMenu>
       {show === "" ? (
         <InitialHeader>Select what you want to do!</InitialHeader>
       ) : null}
+            {show === "room" ? (
+        <RoomItem/>
+      ) : null}
+      
+      
+
+
       {show === "movie" ? (
         <NewMovie>
           <InputContainer>
@@ -259,6 +273,6 @@ function Movie() {
       ) : null}
     </MovieContainer>
   );
-}
+}}
 
 export default Movie;

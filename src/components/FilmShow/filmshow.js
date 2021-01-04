@@ -135,11 +135,16 @@ class FilmShow extends React.Component {
     date: "",
   };
 
+  myHeaders = new Headers({
+    Authorization: "Bearer " + localStorage.getItem("Bearer"),
+    "Content-Type": "application/json"
+  });
+
   async componentDidMount() {
-    await fetch("http://localhost:8010/movies")
+    await fetch("/movies" , {headers: this.myHeaders})
       .then((response) => response.json())
       .then((movies) => this.setState({ movies, isReady: "yes" }));
-    await fetch("http://localhost:8010/room")
+    await fetch("/room",{headers: this.myHeaders})
       .then((response) => response.json())
       .then((rooms) => this.setState({ rooms, isRoomReady: "yes" }));
   }
@@ -173,9 +178,7 @@ class FilmShow extends React.Component {
         this.state.room,
       {
         method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: this.myHeaders,
         body: JSON.stringify({
           dateStart: this.state.date,
         }),

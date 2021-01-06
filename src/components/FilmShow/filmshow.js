@@ -183,7 +183,7 @@ class FilmShow extends React.Component {
           dateStart: this.state.date,
         }),
       }
-    );
+    ).then(response => response.status === 200 ? alert("Seans został dodany") : alert("Ta sala jest juz zarezerwowana"));
   }
   render() {
     if (localStorage.getItem("Bearer") === null) {
